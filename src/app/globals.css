@@ -77,6 +77,20 @@
 }
 
 /* ══════════════════════════════════════════════════════
+   Webflow section_grid wrapper
+   On the live site, every section sits inside a 5-column
+   CSS Grid that constrains content to the center 3 cols.
+   DevLink export omits this wrapper, so we recreate it.
+   ══════════════════════════════════════════════════════ */
+.section-grid{
+  display:grid;
+  grid-template-columns:minmax(160px,1.5fr) 2fr 2fr 2fr minmax(120px,1fr);
+}
+.section-grid > *{
+  grid-column:2/5;
+}
+
+/* ══════════════════════════════════════════════════════
    DevLink CSS-module overrides
    GlobalStyles injects hover CSS targeting plain class names
    (.nav_link, .cta) but CSS modules hash them, so we use
@@ -178,6 +192,12 @@ a[class*="cta"]{
 /* ── Cream text class (used in contact section) ── */
 [class*="text-color-cream"]{
   color:var(--swatch--sc-pearl-cream, #f8f8ee);
+}
+
+/* ── Small text style: 14px (Webflow variable fallback) ── */
+[class*="u-text-style-small"]{
+  font-size:0.875rem !important;   /* 14px */
+  line-height:1.2 !important;
 }
 
 /* ── "pretty" class for Arapey italic ── */
