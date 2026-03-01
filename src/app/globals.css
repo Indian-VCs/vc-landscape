@@ -194,6 +194,11 @@ a[class*="cta"]{
   color:var(--swatch--sc-pearl-cream, #f8f8ee);
 }
 
+/* ── Alignment utility: center (Webflow variable fallback) ── */
+[class*="u-alignment-center"]{
+  text-align:center !important;
+}
+
 /* ── Small text style: 14px (Webflow variable fallback) ── */
 [class*="u-text-style-small"]{
   font-size:0.875rem !important;   /* 14px */
