@@ -1,21 +1,24 @@
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-html{-webkit-font-smoothing:antialiased}
-body{
-  font-family:'DM Sans',-apple-system,BlinkMacSystemFont,sans-serif;
-  background:#e0e0d6;color:#191816;
-}
-/* ── Page content wrapper (centers poster) ── */
+/* ── Page content wrapper (centers scaled poster) ── */
 .page-content{
-  display:flex;justify-content:center;
-  padding:32px 16px;
+  padding:2rem 1rem;
   overflow-x:auto;
+}
+/* ── Poster scale wrapper ── */
+.poster-wrap{
+  width:1536px;   /* 1920 × 0.8 */
+  height:864px;   /* 1080 × 0.8 */
+  overflow:hidden;
+  margin:0 auto;
+  flex-shrink:0;
 }
 /* ── Poster ── */
 .poster{
   width:1920px;height:1080px;background:#F8F8EE;
   display:flex;flex-direction:column;overflow:hidden;
   border-radius:10px;box-shadow:0 6px 36px rgba(0,0,0,0.12);
-  flex-shrink:0;
+  font-family:'DM Sans',-apple-system,BlinkMacSystemFont,sans-serif;
+  transform:scale(0.8);
+  transform-origin:top left;
 }
 /* ── Header ── */
 .header{
@@ -71,4 +74,45 @@ body{
 .poster-footer{
   flex-shrink:0;height:4px;
   background:linear-gradient(90deg,#D21905 0%,#AB342B 40%,#D21905 70%,#AB342B 100%);
+}
+
+/* ══════════════════════════════════════════════════════
+   DevLink CSS-module overrides
+   GlobalStyles injects hover CSS targeting plain class names
+   (.nav_link, .cta) but CSS modules hash them, so we use
+   attribute selectors to match the unhashed portion.
+   ══════════════════════════════════════════════════════ */
+
+/* ── Nav link: force uppercase (CSS-module specificity fix) ── */
+a[class*="nav_link"][class*="u-text-transform-uppercase"]{
+  text-transform:uppercase !important;
+}
+
+/* ── Nav link: hover effects ── */
+a[class*="nav_link"]:hover{
+  background:var(--_theme---text-link--text-background);
+  color:var(--_theme---text-link--text-hover);
+  border-color:var(--_theme---text-link--border-hover);
+}
+a[class*="nav_link"]:hover [class*="nav_link_text_line"]{
+  width:100%;
+}
+
+/* ── Nav link: active / current page ── */
+a[class*="nav_link"].w--current{
+  background:var(--_theme---text-link--text-background);
+  color:var(--_theme---text-link--text-hover);
+  border-color:var(--_theme---text-link--border-hover);
+}
+a[class*="nav_link"].w--current [class*="nav_link_text_line"]{
+  width:100%;
+}
+
+/* ── CTA: hover effects ── */
+a[class*="cta"]:hover{
+  background:var(--swatch--pc-indian-vcs-red);
+  color:var(--swatch--sc-pearl-cream);
+}
+a[class*="cta"]:hover [class*="cta_line_abs"]{
+  width:100%;
 }

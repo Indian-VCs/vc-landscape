@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import { IndianVCsLogo } from "./logo";
 import { DevLinkProvider } from "../../devlink/DevLinkProvider";
+import { GlobalStyles } from "../../devlink/GlobalStyles";
 import { Navbar } from "../../devlink/Navbar";
 import { ContactSection } from "../../devlink/ContactSection";
 import { Footer } from "../../devlink/Footer";
@@ -165,8 +166,10 @@ export default function Home() {
 
   return (
     <DevLinkProvider>
+      <GlobalStyles />
       <Navbar />
       <div className="page-content">
+        <div className="poster-wrap">
         <div className="poster">
           <header className="header">
             <div className="hdr-row">
@@ -186,6 +189,7 @@ export default function Home() {
           </header>
           <div className="landscape" ref={landscapeRef} />
           <div className="poster-footer" />
+        </div>
         </div>
       </div>
       <ContactSection />
